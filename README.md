@@ -1,3 +1,74 @@
+# isaac_lab_walkthrough
+
+This Isaac Lab **Project** was generated from the template via `./isaaclab.sh --new` with the options described in the [Isaac Lab -> Walkthrough -> Isaac Lab Project Setup](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/project_setup.html#isaac-lab-project-setup)
+
+The intention is to annotate the existing [Walkthrough documentation](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/index.html) while working through the tutorials.  To view the added comments, look at the git commits.
+
+## Compatibility
+
+The following instructions are based on using Ubuntu 22.04.  I attempted to try the same with Ubuntu 20.04 without success - although it may be possible.
+
+## Project Setup/Install
+
+Because it was not originally obvious that it is best (or required?) to do everythying in a conda virtual environment, the [Isaac Lab Project Setup instructions](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/project_setup.html) are repeated here with additional detail.
+
+### Virtual environment - conda
+Activate the base conda environment:
+```
+eval "$(/home/bsb/miniconda3/bin/conda shell.bash hook)" 
+```
+
+These next steps are from [Isaac Lab local installation instructions](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html)
+Create a new conda environment and activate
+```
+conda create -n env_isaaclab python=3.10
+conda activate env_isaaclab
+```
+
+### Install Isaac Sim
+Use `nvidia-smi` to check the host's CUDA version.  Mine was 12, so install CUDA 12 within the env_isaaclab conda environment.  Also upgrade pip and install isaacsim via pip.
+
+Within the `env_isaaclab` conda environment...
+
+```
+pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
+pip install --upgrade pip
+pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvidia.com
+```
+
+### Install Isaac Lab
+
+Still withint the `env_isaaclab` conda environment...
+
+From the root of the Issac Lab local git repository 
+
+(You may want to `git pull` to update the repo before install.)
+
+```
+./isaaclab.sh --install 
+```
+
+### Install this Project
+
+Then install this Project.  From the root of this local git repo, still in the conda environment
+
+```
+python -m pip install -e source/isaac_lab_walthrough
+```
+
+### Verify the Install
+
+From the root of this local git repo, still in the conda environment
+
+```
+python scripts/list_envs.py
+```
+
+---
+
+# Original README.md
+
+
 # Template for Isaac Lab Projects
 
 ## Overview
