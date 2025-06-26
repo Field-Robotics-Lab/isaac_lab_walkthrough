@@ -53,7 +53,7 @@ From the root of the Issac Lab local git repository
 Then install this Project.  From the root of this local git repo, still in the conda environment
 
 ```
-python -m pip install -e source/isaac_lab_walthrough
+python -m pip install -e source/isaac_lab_walkthrough
 ```
 
 ### Verify the Install

@@ -17,7 +17,7 @@ from isaaclab.utils import configclass
 See documentation in the function [isaaclab.utils.configclass](https://github.com/isaac-sim/IsaacLab/blob/main/source/isaaclab/isaaclab/utils/configclass.py)
 
 The decoration wrapper provides the following features:
-- applies the `@dataclass` decorator to the class
+- applies the [`@dataclass`](https://docs.python.org/3/library/dataclasses.html) decorator to the class
 - helper functions to convert to/from dictionaries, copy, replace, validate
 - add type annotations to the class attributes
 '''
