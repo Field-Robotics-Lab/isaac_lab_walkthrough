@@ -68,13 +68,41 @@ python scripts/list_envs.py
 
 ## Environment Design
 
-The [Environment Design](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/technical_env_design.html) portion of the Walkthrough requires additions and modifications of the template.  By updating the repo to the branch `environment_design`, these changes will be completed for you.  Note that because we did not use the project name `issac_lab_tutorial`, but instead used the name `isaac_lab_walkthrough`, the names of some of the python objects and methods needed to be different than those listed in the tutorial.
+The [Environment Design](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/technical_env_design.html) portion of the Walkthrough requires additions and modifications of the template.  
+To use the code as it is at the end of this step in the Walkthrough, checkout the `environment_design` branch.
+
+Note that because we did not use the project name `issac_lab_tutorial`, but instead used the name `isaac_lab_walkthrough`, the names of some of the python objects and methods needed to be different than those listed in the tutorial.
 
 You can run the vectorized training environment with the command:
 
 ```
 python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
+
+## Training the Jetbot
+
+The [Training the Jetbot](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_gt.html) portion of the Walkthrough makes modifications to the environment to add visual markers as "ground truth" and to help visualize/debug the training.  
+
+To use the code at the end of this step in the Walkthrough, checktout the `training_jetbot` branch.
+
+You can run the vectorized training environment, with visualization markers, with the command:
+
+```
+python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+## 
+
+The [Exploring the RL problem](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_reward_exploration.html#exploring-the-rl-problem) tutorial modifies the observations and rewards to accomplish the jetbot driving task.  
+
+To use the code at the end of this step in the Walkthrough, checktout the `exploring` branch.
+
+You can run the vectorized training environment, with visualization markers, with the command:
+
+```
+python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
 
 ---
 
