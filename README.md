@@ -10,6 +10,8 @@ The following instructions are based on using Ubuntu 22.04.  I attempted to try 
 
 ## Project Setup/Install
 
+This section covers the material in the Walkthrough sections: Isaac Lab Project Setup, Environmental Design Background and Environmental Design.
+
 Because it was not originally obvious that it is best (or required?) to do everythying in a conda virtual environment, the [Isaac Lab Project Setup instructions](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/project_setup.html) are repeated here with additional detail.
 
 ### Virtual environment - conda
@@ -62,6 +64,16 @@ From the root of this local git repo, still in the conda environment
 
 ```
 python scripts/list_envs.py
+```
+
+## Environment Design
+
+The [Environment Design](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/technical_env_design.html) portion of the Walkthrough requires additions and modifications of the template.  By updating the repo to the branch `environment_design`, these changes will be completed for you.  Note that because we did not use the project name `issac_lab_tutorial`, but instead used the name `isaac_lab_walkthrough`, the names of some of the python objects and methods needed to be different than those listed in the tutorial.
+
+You can run the vectorized training environment with the command:
+
+```
+python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
 ---
