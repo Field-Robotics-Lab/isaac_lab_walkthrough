@@ -91,6 +91,15 @@ You can run the vectorized training environment, with visualization markers, wit
 python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
+You can view the logs with something like...
+```
+cd ../IsaacLab
+./isaaclab.sh -p -m tensorboard.main --logdir ../isaac_lab_walkthrough/logs/skrl/cartpole_direct
+```
+
+If you want to change the logging directory to something other than `cartpole_direct`, see `skrl_ppo_cfg.yaml` file.
+
+
 ## 
 
 The [Exploring the RL problem](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_reward_exploration.html#exploring-the-rl-problem) tutorial modifies the observations and rewards to accomplish the jetbot driving task.  
@@ -101,6 +110,11 @@ You can run the vectorized training environment, with visualization markers, wit
 
 ```
 python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+Once training is complete, can then play the learned policy...
+````
+python scripts/skrl/play.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
 
