@@ -100,7 +100,7 @@ cd ../IsaacLab
 If you want to change the logging directory to something other than `cartpole_direct`, see `skrl_ppo_cfg.yaml` file.
 
 
-## 
+## Exploring the RL Problem
 
 The [Exploring the RL problem](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_reward_exploration.html#exploring-the-rl-problem) tutorial modifies the observations and rewards to accomplish the jetbot driving task.  
 
@@ -113,7 +113,7 @@ python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
 Once training is complete, can then play the learned policy...
-````
+```
 python scripts/skrl/play.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
