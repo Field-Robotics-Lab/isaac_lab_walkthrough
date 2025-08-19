@@ -14,7 +14,8 @@ This section covers the material in the Walkthrough sections: Isaac Lab Project 
 
 Because it was not originally obvious that it is best (or required?) to do everythying in a conda virtual environment, the [Isaac Lab Project Setup instructions](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/project_setup.html) are repeated here with additional detail.
 
-### Virtual environment - conda
+### Build Virtual `isaaclab` conda environment
+
 Activate the base conda environment:
 ```
 eval "$(/home/bsb/miniconda3/bin/conda shell.bash hook)" 
@@ -40,7 +41,7 @@ pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvid
 
 ### Install Isaac Lab
 
-Still withint the `env_isaaclab` conda environment...
+Still within the `env_isaaclab` conda environment...
 
 From the root of the Issac Lab local git repository 
 
@@ -104,7 +105,7 @@ If you want to change the logging directory to something other than `cartpole_di
 
 The [Exploring the RL problem](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_reward_exploration.html#exploring-the-rl-problem) tutorial modifies the observations and rewards to accomplish the jetbot driving task.  
 
-To use the code at the end of this step in the Walkthrough, checktout the `exploring` branch.
+To use the code at the end of this step in the Walkthrough, checkout the `exploring` branch.
 
 You can run the vectorized training environment, with visualization markers, with the command:
 
