@@ -104,7 +104,7 @@ If you want to change the logging directory to something other than `cartpole_di
 
 The [Exploring the RL problem](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_reward_exploration.html#exploring-the-rl-problem) tutorial modifies the observations and rewards to accomplish the jetbot driving task.  
 
-To use the code at the end of this step in the Walkthrough, checktout the `exploring` branch.
+To use the code at the end of this step in the Walkthrough, checkout the `exploring` branch.
 
 You can run the vectorized training environment, with visualization markers, with the command:
 
@@ -115,6 +115,18 @@ python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 Once training is complete, can then play the learned policy...
 ```
 python scripts/skrl/play.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+## Modifying the RL Problem (Work in progress)
+
+This goes beyond what is the existing "walkthrough" to demonstrate modifications to the configuration and learning workflow.
+
+### Testing the environment/task
+
+The zero agent provides no actions, but is a good way to make sure that the task is configured as desired.  Run this command to instatiate the training environment task:
+
+```
+python scripts/zero_agent.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
 
