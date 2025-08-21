@@ -1,9 +1,11 @@
 from isaac_lab_walkthrough.robots.jetbot import JETBOT_CONFIG
 
+import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg
 from isaaclab.envs import DirectRLEnvCfg
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg
+from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
 
 @configclass
@@ -17,11 +19,34 @@ class IsaacLabWalkthroughEnvCfg(DirectRLEnvCfg):
     state_space = 0
     # simulation
     sim: SimulationCfg = SimulationCfg(dt=1 / 120, render_interval=decimation)
+    # terrain = TerrainImporterCfg(
+    #     prim_path="/World/terrain",
+    #     terrain_type="generator",  # "plane",
+    #     terrain_generator=ROUGH_TERRAINS_CFG,
+    #     collision_group=-1,
+    #     physics_material=sim_utils.RigidBodyMaterialCfg(
+    #         friction_combine_mode="average",
+    #         restitution_combine_mode="average",
+    #         static_friction=1.0,
+    #         dynamic_friction=1.0,
+    #         restitution=0.0,
+    #     ),
+    #     debug_vis=False,
+    # )
     # robot(s)
     robot_cfg: ArticulationCfg = JETBOT_CONFIG.replace(prim_path="/World/envs/env_.*/Robot")
     # scene
     scene: InteractiveSceneCfg = InteractiveSceneCfg(num_envs=100, env_spacing=4.0, replicate_physics=True)
     dof_names = ["left_wheel_joint", "right_wheel_joint"]
+
+    #     scene: InteractiveSceneCfg = InteractiveSceneCfg(
+    #     num_envs=100, 
+    #     env_spacing=4.0, 
+    #     replicate_physics=True,
+    #     ground=sim_utils.UsdFileCfg(
+    #         prim_path="/World/ground", usd_path="omniverse://localhost/Projects/IsaacLab/safety_park_high_res_textured.usd"
+    #     )
+    # )
 
 # # Copyright (c) 2022-2025, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
 # # All rights reserved.

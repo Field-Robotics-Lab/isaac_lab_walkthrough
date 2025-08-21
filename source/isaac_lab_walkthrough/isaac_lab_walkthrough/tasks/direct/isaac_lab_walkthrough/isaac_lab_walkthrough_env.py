@@ -66,6 +66,15 @@ class IsaacLabWalkthroughEnv(DirectRLEnv):
         self.robot = Articulation(self.cfg.robot_cfg)
         # add ground plane
         spawn_ground_plane(prim_path="/World/ground", cfg=GroundPlaneCfg())
+        # add background usd
+        cfg = sim_utils.UsdFileCfg(
+            usd_path="omniverse://localhost/NVIDIA/Assets/Isaac/4.5/Isaac/Environments/Terrains/rough_plane.usd")
+        # BSB can't use this USD because, even with 1 environment, I run out of memory.
+        #usd_path="omniverse://localhost/Projects/IsaacLab/safety_park_high_res_textured.usd")
+            
+        prim_path = "/World/background"
+        cfg.func(prim_path, cfg)
+
         # clone and replicate
         self.scene.clone_environments(copy_from_source=False)
         # add articulation to scene
