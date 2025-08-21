@@ -152,7 +152,7 @@ Note that if you hover over the file it shows the full path.  You can also right
 
 The branch `add_background` illustrates adding a usd asset to the scene within the `_setup_scene` method of the environment implementation.  In the example we use the rough terrain USD included with Issac.  Large USD files can (e.g. the safety park) I don't have enough memory, even for just one environment.
 
-We can also reduce the number of vectorized environment (default is 10) to conserve resources.
+We can also reduce the number of vectorized environment (default is 100) to conserve resources.
 
 ```
 python scripts/zero_agent.py --num_envs=10 --task=Template-Isaac-Lab-Walkthrough-Direct-v0
