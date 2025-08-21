@@ -14,7 +14,8 @@ This section covers the material in the Walkthrough sections: Isaac Lab Project 
 
 Because it was not originally obvious that it is best (or required?) to do everythying in a conda virtual environment, the [Isaac Lab Project Setup instructions](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/project_setup.html) are repeated here with additional detail.
 
-### Virtual environment - conda
+### Build Virtual `isaaclab` conda environment
+
 Activate the base conda environment:
 ```
 eval "$(/home/bsb/miniconda3/bin/conda shell.bash hook)" 
@@ -40,7 +41,7 @@ pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvid
 
 ### Install Isaac Lab
 
-Still withint the `env_isaaclab` conda environment...
+Still within the `env_isaaclab` conda environment...
 
 From the root of the Issac Lab local git repository 
 
@@ -68,13 +69,98 @@ python scripts/list_envs.py
 
 ## Environment Design
 
-The [Environment Design](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/technical_env_design.html) portion of the Walkthrough requires additions and modifications of the template.  By updating the repo to the branch `environment_design`, these changes will be completed for you.  Note that because we did not use the project name `issac_lab_tutorial`, but instead used the name `isaac_lab_walkthrough`, the names of some of the python objects and methods needed to be different than those listed in the tutorial.
+The [Environment Design](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/technical_env_design.html) portion of the Walkthrough requires additions and modifications of the template.  
+To use the code as it is at the end of this step in the Walkthrough, checkout the `environment_design` branch.
+
+Note that because we did not use the project name `issac_lab_tutorial`, but instead used the name `isaac_lab_walkthrough`, the names of some of the python objects and methods needed to be different than those listed in the tutorial.
 
 You can run the vectorized training environment with the command:
 
 ```
 python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
+
+## Training the Jetbot
+
+The [Training the Jetbot](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_gt.html) portion of the Walkthrough makes modifications to the environment to add visual markers as "ground truth" and to help visualize/debug the training.  
+
+To use the code at the end of this step in the Walkthrough, checktout the `training_jetbot` branch.
+
+You can run the vectorized training environment, with visualization markers, with the command:
+
+```
+python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+You can view the logs with something like...
+```
+cd ../IsaacLab
+./isaaclab.sh -p -m tensorboard.main --logdir ../isaac_lab_walkthrough/logs/skrl/cartpole_direct
+```
+
+If you want to change the logging directory to something other than `cartpole_direct`, see `skrl_ppo_cfg.yaml` file.
+
+
+## Exploring the RL Problem
+
+The [Exploring the RL problem](https://isaac-sim.github.io/IsaacLab/main/source/setup/walkthrough/training_jetbot_reward_exploration.html#exploring-the-rl-problem) tutorial modifies the observations and rewards to accomplish the jetbot driving task.  
+
+To use the code at the end of this step in the Walkthrough, checkout the `exploring` branch.
+
+You can run the vectorized training environment, with visualization markers, with the command:
+
+```
+python scripts/skrl/train.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+Once training is complete, can then play the learned policy...
+```
+python scripts/skrl/play.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+## Modifying the RL Problem (Work in progress)
+
+This goes beyond what is the existing "walkthrough" to demonstrate modifications to the configuration and learning workflow.
+
+### Testing the environment/task
+
+The zero agent provides no actions, but is a good way to make sure that the task is configured as desired.  Run this command to instantiate the training environment task:
+
+```
+python scripts/zero_agent.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+### Adding assets to the local omniverse server
+
+This is a manual way to add the USD to the `localhost` omniverse server.  (Would be nice to do this programmatically)
+
+If you have a USD file (often a file with a directory of of textures, materials, etc.)
+
+* Open isaac
+    ```bash
+    cd ~/isaacsim
+    ./isaac-sim.selector.sh
+    ```
+
+Use the content window to drag-and-drop the files into your `localhost` nucleus server.  Here is an example of what that might look like...
+
+![Safety Park Example](images/safetypark.png)
+
+Note that if you hover over the file it shows the full path.  You can also right-click to copy the path and paste it into your code, "Copy URL link".
+
+### Adding an existing USD background
+
+The branch `add_background` illustrates adding a usd asset to the scene within the `_setup_scene` method of the environment implementation.  In the example we use the rough terrain USD included with Issac.  Large USD files can (e.g. the safety park) I don't have enough memory, even for just one environment.
+
+We can also reduce the number of vectorized environment (default is 10) to conserve resources.
+
+```
+python scripts/zero_agent.py --num_envs=10 --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+This image shows what you should see - a few jetbots on rough ground.  (I'm not sure why the ground looks decimated.)
+
+![Jetbots on Rough Terrain](images/jetbots_rough.png)
 
 ---
 
