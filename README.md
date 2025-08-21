@@ -123,12 +123,43 @@ This goes beyond what is the existing "walkthrough" to demonstrate modifications
 
 ### Testing the environment/task
 
-The zero agent provides no actions, but is a good way to make sure that the task is configured as desired.  Run this command to instatiate the training environment task:
+The zero agent provides no actions, but is a good way to make sure that the task is configured as desired.  Run this command to instantiate the training environment task:
 
 ```
 python scripts/zero_agent.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
+### Adding assets to the local omniverse server
+
+This is a manual way to add the USD to the `localhost` omniverse server.  (Would be nice to do this programmatically)
+
+If you have a USD file (often a file with a directory of of textures, materials, etc.)
+
+* Open isaac
+    ```bash
+    cd ~/isaacsim
+    ./isaac-sim.selector.sh
+    ```
+
+Use the content window to drag-and-drop the files into your `localhost` nucleus server.  Here is an example of what that might look like...
+
+![Safety Park Example](images/safetypark.png)
+
+Note that if you hover over the file it shows the full path.  You can also right-click to copy the path and paste it into your code, "Copy URL link".
+
+### Adding an existing USD background
+
+The branch `add_background` illustrates adding a usd asset to the scene within the `_setup_scene` method of the environment implementation.  In the example we use the rough terrain USD included with Issac.  Large USD files can (e.g. the safety park) I don't have enough memory, even for just one environment.
+
+We can also reduce the number of vectorized environment (default is 10) to conserve resources.
+
+```
+python scripts/zero_agent.py --num_envs=10 --task=Template-Isaac-Lab-Walkthrough-Direct-v0
+```
+
+This image shows what you should see - a few jetbots on rough ground.  (I'm not sure why the ground looks decimated.)
+
+![Jetbots on Rough Terrain](images/jetbots_rough.png)
 
 ---
 
