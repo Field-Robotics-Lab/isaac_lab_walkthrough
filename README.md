@@ -118,7 +118,7 @@ Once training is complete, can then play the learned policy...
 python scripts/skrl/play.py --task=Template-Isaac-Lab-Walkthrough-Direct-v0
 ```
 
-## Modifying the RL Problem (Work in progress)
+## Modifying the RL Problem
 
 This goes beyond what is the existing "walkthrough" to demonstrate modifications to the configuration and learning workflow.
 
@@ -162,6 +162,25 @@ This image shows what you should see - a few jetbots on rough ground.  (I'm not 
 
 ![Jetbots on Rough Terrain](images/jetbots_rough.png)
 
+### Changing the robot
+
+The branch `change_robot` illustrates replacing the jetbot with a clearpath jackal.   To see the changes, look at the diff between the `change_robot` and `exploring` branches.
+
+* This scene is the flat ground plan (attempts with the rough terrain caused physics stability issues)
+* The Clearpath Jackal basic USD is included with the assets for IsaacSim 4.5.0.
+* We add an `ArticulationCfg` definition with a new `jackal_basic.py` file and then configure the articulalation for learning in the environment config file.
+* The jackal has 4 wheels that are each actuated, so we increase the degrees of freedom from 2 (jetbot) to 4 (jackal)
+
+Here are some things you can do:
+
+* Test the environment: `python scripts/zero_agent.py --num_envs=10 --task=Template-Isaac-Lab-Walkthrough-Direct-v0`
+* Train in the environment: `python scripts/skrl/train.py --num_envs=10 --task=Template-Isaac-Lab-Walkthrough-Direct-v0`
+* Play back the trained controller: `python scripts/skrl/play.py --num_envs=10 --task=Template-Isaac-Lab-Walkthrough-Direct-v0`
+
+The training does not converge to a well-bahaved controller, but tuning up the learning is a separate issue.
+
+
+![Jackal sub](images/jackal.png)
 ---
 
 # Original README.md
